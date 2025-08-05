@@ -1,6 +1,7 @@
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
 const DOMAIN = 0x0000;
 
@@ -35,10 +36,31 @@ export default class EntryAbility extends UIAbility {
   onForeground(): void {
     // Ability has brought to foreground
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
+
+    // [2] Stop the background task when the app returns to the foreground
+    try {
+      backgroundTaskManager.stopBackgroundRunning(this.context);
+      hilog.info(DOMAIN, 'testTag', 'Succeeded in stopping background running.');
+    } catch (error) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to stop background running. Cause: %{public}s', JSON.stringify(error));
+    }
   }
 
   onBackground(): void {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+
+    // [3] Start background task for audio playback
+    try {
+      backgroundTaskManager.startBackgroundRunning(this.context, backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, {
+        notification: {
+          title: "Player running.", // Notification title
+          text: "Audio is playing in the background." // Notification text
+        }
+      });
+      hilog.info(DOMAIN, 'testTag', 'Succeeded in starting background running.');
+    } catch (error) {
+      hilog.error(DOMAIN, 'testTag', 'Failed to start background running. Cause: %{public}s', JSON.stringify(error));
+    }
   }
 }

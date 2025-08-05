@@ -1,6 +1,5 @@
 {
   "app": {
-    "signingConfigs": [],
     "products": [
       {
         "name": "default",
@@ -18,10 +17,25 @@
     ],
     "buildModeSet": [
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"
+      }
+    ],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\matheus.rodrigues\\.ohos\\config\\default_Webview_FKLS_Rt2E3O-giD2togc3jwwUshWuenU3SsE6NDQpnw=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B6C6856BE7F98BEC376DEABC79CC778A7EB4814726AA4F43A65EB62BABB3ECEB31844E3E9627AC2",
+          "profile": "C:\\Users\\matheus.rodrigues\\.ohos\\config\\default_Webview_FKLS_Rt2E3O-giD2togc3jwwUshWuenU3SsE6NDQpnw=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\matheus.rodrigues\\.ohos\\config\\default_Webview_FKLS_Rt2E3O-giD2togc3jwwUshWuenU3SsE6NDQpnw=.p12",
+          "storePassword": "0000001BBFFDD8CF8C32E2D050C9F44B9E90484E434201E09A5D393A9CAF7350B5E2B601F38AC40D8701FF"
+        }
       }
     ]
   },

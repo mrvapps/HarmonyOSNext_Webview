@@ -21,7 +21,11 @@
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-        "orientation": "unspecified", // Allow free rotation
+        "orientation": "unspecified",
+        "supportWindowMode": [
+          "fullscreen",
+          "floating"
+        ],
         "exported": true,
         "skills": [
           {
@@ -45,17 +49,21 @@
           {
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
+          },
+          {
+            "name": "avoid_cutout",
+            "value": "true"
           }
-        ],
+        ]
       }
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.INTERNET", //Allow internet access
+        "name": "ohos.permission.INTERNET"
       },
       {
-        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
-      }
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+      },
     ]
   }
 }
